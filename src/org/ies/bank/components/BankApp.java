@@ -31,30 +31,50 @@ public class BankApp {
                 String iban = scanner.nextLine();
                 bank.showAccount(iban);
             } else if (option == 3) {
-                // Mostrar cuentas de cliente
-                System.out.println("Introduce el NIF");
+                System.out.println("Introduce el NIF del cliente:");
                 String nif = scanner.nextLine();
-                bank.showAccount(nif);
+
+                bank.showCustomerAccounts(nif);
             } else if (option == 4) {
-                // Ingresar
                 System.out.println("Introduce el IBAN:");
                 String iban = scanner.nextLine();
-                System.out.println("Que cantidad quieres ingresar: ");
-                double num1 = scanner.nextInt();
+
+                System.out.println("Cantidad vas a ingresar:");
+                double amount = scanner.nextDouble();
                 scanner.nextLine();
-                bank.deposit(iban, num1);
-                bank.showAccount(iban);
+
+                bank.deposit(iban, amount);
             } else if (option == 5) {
-                // Sacar
-                System.out.println("Introduce el IBAN");
+                System.out.println("Introduce el IBAN:");
                 String iban = scanner.nextLine();
-                System.out.println("Que cantidad quieres sacar: ");
-                double num2 = scanner.nextInt();
-                bank.deposit(iban, num2);
-                bank.showAccount(iban);
+
+                System.out.println("Cantidad vas a sacar:");
+                double amount = scanner.nextDouble();
                 scanner.nextLine();
+
+                bank.withdraw(iban, amount);
+            } else if (option == 6) {
+                System.out.println("Introduce el NIF del cliente:");
+                String nif = scanner.nextLine();
+
+                int customerAccountsNumber = bank.countCustomerAccounts(nif);
+                System.out.println("El cliente tiene " + customerAccountsNumber + " cuentas.");
+            } else if (option == 7) {
+                System.out.println("Introduce el IBAN:");
+                String iban = scanner.nextLine();
+
+                bank.showAccountCustomer(iban);
+            } else if (option == 8) {
+                System.out.println("Introduce un IBAN:");
+                String iban = scanner.nextLine();
+                System.out.println("Introduce otro IBAN");
+                String iban2 = scanner.nextLine();
+                System.out.println("Introduce la cantidad de dinero para la transferencia:");
+                int n1 = scanner.nextInt();
+                scanner.nextLine();
+                int result =
             }
-        } while (option != 6);
+        } while (option != 9);
     }
 
     private int chooseOption() {
@@ -66,10 +86,13 @@ public class BankApp {
             System.out.println("3. Mostrar cuentas de cliente");
             System.out.println("4. Ingresar");
             System.out.println("5. Sacar");
-            System.out.println("6. Salir");
+            System.out.println("6. Contar cuentas de cliente");
+            System.out.println("7. Mostrar titular de cuenta");
+            System.out.println("8. Hacer una transferencia");
+            System.out.println("9. Salir");
             option = scanner.nextInt();
             scanner.nextLine();
-        } while (option < 1 || option > 6);
+        } while (option < 1 || option > 8);
         return option;
     }
 }

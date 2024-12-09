@@ -1,7 +1,7 @@
 package org.ies.bank.components;
 
-import org.ies.bank.model.Bank;
 import org.ies.bank.model.Account;
+import org.ies.bank.model.Bank;
 
 import java.util.Scanner;
 
@@ -14,15 +14,17 @@ public class BankReader {
         this.accountReader = accountReader;
     }
 
-    public Bank reader () {
-        System.out.println("Introduce los datos del banco");
-        System.out.println("Nombre del banco: ");
+    public Bank read() {
+        System.out.println("Introduce los datos del banco:");
+        System.out.println("Nombre:");
         String name = scanner.nextLine();
-        System.out.println("¿Cuantas cuentas tiene el banco?");
+
+        System.out.println("¿Cuantas cuentas hay?");
         int numAccounts = scanner.nextInt();
         scanner.nextLine();
 
         Account[] accounts = new Account[numAccounts];
+
         for (int i = 0; i < accounts.length; i++) {
             accounts[i] = accountReader.read();
         }
