@@ -72,7 +72,7 @@ public class BankApp {
                 System.out.println("Introduce la cantidad de dinero para la transferencia:");
                 int n1 = scanner.nextInt();
                 scanner.nextLine();
-                int result =
+                //int result =
             }
         } while (option != 9);
     }
