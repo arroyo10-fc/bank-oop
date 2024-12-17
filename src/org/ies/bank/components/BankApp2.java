@@ -16,47 +16,31 @@ public class BankApp2 {
 
     public void run() {
         Bank bank = bankReader.read();
-        System.out.println("ES0001");
-        String iban = scanner.nextLine();
-        Account account = bankReader.read().findAccount(iban);
 
-        //int option;
-        //do {
-        //    option = chooseOption();
-        //    if (option == 1) {
-        //        System.out.println("ES0001");
-        //        String iban = scanner.nextLine();
-        //        Account account = bank.findAccount(iban);
-        //        account.deposit(500);
-        //    } else if (option == 2) {
-        //        System.out.println("ES0002");
-        //         String iban = scanner.nextLine();
-        //        Account account = bank.findAccount(iban);
-        //       account.deposit(-30);
-        //   } else if (option == 3) {
-        //       System.out.println("ES0001");
-        //       String iban = scanner.nextLine();
-        //       bank.showAccount(iban);
-        //   } else if (option == 4) {
-        //       System.out.println("ES0002");
-        //       String iban = scanner.nextLine();
-        //      bank.showAccount(iban);
-        //   }
-        //} while (option != 4);
-        //}
+        //Busca la cuenta con IBAN "ES0001".
+        //Si no existe muestra "La cuenta no existe"
+        //Si existe, hace un deposito en la misma de 500
+        Account account01 = bank.findAccount("ES0001");
+        if (account01 != null) {
+            bank.deposit("ES0001", 500);
+        } else {
+            System.out.println("La cuenta no existe");
+        }
+        //Busca otra cuenta con IBAN "ES0002"
+        //Si no existe muestra "La cuenta no existe"
+        //Si existe, saca 30 euros
+        Account account02 = bank.findAccount("ES0002");
+        if (account02 != null) {
+            bank.deposit("ES0002", -30);
+        } else {
+            System.out.println("La cuenta no existe");
+        }
+        //Muestra en pantalla la información de la cuenta "ES0001"
+        account01.showInfo();
+        //Muestra en pantalla la información de la cuenta "ES0002"
+        account02.showInfo();
+        //Haz una trasnferencia de 500 euros desde "ES0001" a "ES0002"
 
-        //private int chooseOption() {
-        //int option;
-        //do {
-        //  System.out.println("Elige una opción:");
-        //  System.out.println("Busca la cuenta");
-        //  System.out.println("Busca la cuenta");
-        //  System.out.println("Muestra la información de la cuenta");
-        //  System.out.println("Muestra la información de la cuenta");
-        //  System.out.println("Hacer una transferencia de la cuenta a la cuenta");
-        //  option = scanner.nextInt();
-        //  scanner.nextLine();
-        //} while (option < 1 || option > 8);
-        //return option;
-        //}
+
+        }
 }

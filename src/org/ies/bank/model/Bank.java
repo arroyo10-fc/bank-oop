@@ -6,10 +6,12 @@ import java.util.Objects;
 public class Bank {
     private String name;
     private Account[] accounts;
+    private Customer[] customers;
 
-    public Bank(String name, Account[] accounts) {
+    public Bank(String name, Account[] accounts, Customer[] customers) {
         this.name = name;
         this.accounts = accounts;
+        this.customers = customers;
     }
 
     public void showAccountCustomer(String iban) {
@@ -87,6 +89,15 @@ public class Bank {
         return null;
     }
 
+    public Customer findNif(String nif) {
+        for (Customer customer : customers) {
+            if (customer.getNif().equals(nif)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
     public String getName() {
         return name;
     }
@@ -103,16 +114,25 @@ public class Bank {
         this.accounts = accounts;
     }
 
+    public Customer[] getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Customer[] customers) {
+        this.customers = customers;
+    }
+
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bank bank = (Bank) o;
-        return Objects.equals(name, bank.name) && Objects.deepEquals(accounts, bank.accounts);
+        return Objects.equals(name, bank.name) && Objects.deepEquals(accounts, bank.accounts) && Objects.deepEquals(customers, bank.customers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, Arrays.hashCode(accounts));
+        return Objects.hash(name, Arrays.hashCode(accounts), Arrays.hashCode(customers));
     }
 
     @Override
@@ -120,6 +140,8 @@ public class Bank {
         return "Bank{" +
                 "name='" + name + '\'' +
                 ", accounts=" + Arrays.toString(accounts) +
+                ", customers=" + Arrays.toString(customers) +
                 '}';
     }
+
 }
